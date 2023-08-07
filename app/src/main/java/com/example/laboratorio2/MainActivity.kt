@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var minusButton: Button
     private lateinit var plusButton: Button
 
-
     private lateinit var nineButton: Button
     private lateinit var eightButton: Button
     private lateinit var sevenButton: Button
