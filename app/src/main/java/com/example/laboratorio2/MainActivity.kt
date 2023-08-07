@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var multiplyButton: Button
     private lateinit var minusButton: Button
     private lateinit var plusButton: Button
+    private lateinit var openParenthesisButton: Button
+    private lateinit var closeParenthesisButton: Button
 
     private lateinit var nineButton: Button
     private lateinit var eightButton: Button
@@ -51,6 +53,8 @@ class MainActivity : AppCompatActivity() {
         multiplyButton = findViewById(R.id.buttoMultiplication)
         minusButton = findViewById(R.id.buttonMinus)
         plusButton = findViewById(R.id.buttonPlus)
+        openParenthesisButton = findViewById(R.id.buttonOpenParenthesis)
+        closeParenthesisButton = findViewById(R.id.buttonCloseParenthesis)
 
         // Numbers
         nineButton = findViewById(R.id.buttonNine)
@@ -179,6 +183,14 @@ class MainActivity : AppCompatActivity() {
 
         plusButton.setOnClickListener {
             operationTextView.text = operationTextView.text.toString() + "+"
+        }
+
+        openParenthesisButton.setOnClickListener {
+            operationTextView.text = operationTextView.text.toString() + "("
+        }
+
+        closeParenthesisButton.setOnClickListener {
+            operationTextView.text = operationTextView.text.toString() + ")"
         }
     }
 }
