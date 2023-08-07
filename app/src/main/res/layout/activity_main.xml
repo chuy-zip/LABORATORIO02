@@ -109,7 +109,6 @@
                 android:textColor="#000000"
                 android:textSize="24sp"
                 app:cornerRadius="2dp" />
-
         </TableRow>
 
         <TableRow
@@ -176,7 +175,6 @@
                 android:textColor="#000000"
                 android:textSize="24sp"
                 app:cornerRadius="2dp" />
-
         </TableRow>
 
         <TableRow
@@ -243,7 +241,6 @@
                 android:textColor="#000000"
                 android:textSize="24sp"
                 app:cornerRadius="2dp" />
-
         </TableRow>
 
         <TableRow
@@ -310,7 +307,6 @@
                 android:textColor="#000000"
                 android:textSize="24sp"
                 app:cornerRadius="2dp" />
-
         </TableRow>
 
         <TableRow
@@ -319,7 +315,7 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/button13"
+                android:id="@+id/buttonDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
@@ -363,8 +359,6 @@
                 android:textColor="#000000"
                 android:textSize="24sp"
                 app:cornerRadius="2dp" />
-
-
         </TableRow>
 
     </TableLayout>
