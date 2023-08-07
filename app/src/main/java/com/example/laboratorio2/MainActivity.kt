@@ -152,5 +152,34 @@ class MainActivity : AppCompatActivity() {
                 else -> operationTextView.text = operationTextView.text.toString() + "0"
             }
         }
+
+        // Sign Listeners
+        equalsButton.setOnClickListener {
+
+        }
+
+        powerButton.setOnClickListener {
+            operationTextView.text = operationTextView.text.toString() + "^"
+        }
+
+        moduleButton.setOnClickListener {
+            operationTextView.text = operationTextView.text.toString() + "%"
+        }
+
+        divisionButton.setOnClickListener {
+            operationTextView.text = operationTextView.text.toString() + "/"
+        }
+
+        multiplyButton.setOnClickListener {
+            operationTextView.text = operationTextView.text.toString() + "*"
+        }
+
+        minusButton.setOnClickListener {
+            operationTextView.text = operationTextView.text.toString() + "-"
+        }
+
+        plusButton.setOnClickListener {
+            operationTextView.text = operationTextView.text.toString() + "+"
+        }
     }
 }
