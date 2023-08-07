@@ -83,11 +83,73 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Numbers Listeners
-
         nineButton.setOnClickListener {
             when (operationTextView.text) {
                 "0" -> operationTextView.text = "9"
                 else -> operationTextView.text = operationTextView.text.toString() + "9"
+            }
+        }
+
+        eightButton.setOnClickListener {
+            when (operationTextView.text) {
+                "0" -> operationTextView.text = "8"
+                else -> operationTextView.text = operationTextView.text.toString() + "8"
+            }
+        }
+
+        sevenButton.setOnClickListener {
+            when (operationTextView.text) {
+                "0" -> operationTextView.text = "7"
+                else -> operationTextView.text = operationTextView.text.toString() + "7"
+            }
+        }
+
+        sixButton.setOnClickListener {
+            when (operationTextView.text) {
+                "0" -> operationTextView.text = "6"
+                else -> operationTextView.text = operationTextView.text.toString() + "6"
+            }
+        }
+
+        fiveButton.setOnClickListener {
+            when (operationTextView.text) {
+                "0" -> operationTextView.text = "5"
+                else -> operationTextView.text = operationTextView.text.toString() + "5"
+            }
+        }
+
+        fourButton.setOnClickListener {
+            when (operationTextView.text) {
+                "0" -> operationTextView.text = "4"
+                else -> operationTextView.text = operationTextView.text.toString() + "4"
+            }
+        }
+
+        threeButton.setOnClickListener {
+            when (operationTextView.text) {
+                "0" -> operationTextView.text = "3"
+                else -> operationTextView.text = operationTextView.text.toString() + "3"
+            }
+        }
+
+        twoButton.setOnClickListener {
+            when (operationTextView.text) {
+                "0" -> operationTextView.text = "2"
+                else -> operationTextView.text = operationTextView.text.toString() + "2"
+            }
+        }
+
+        oneButton.setOnClickListener {
+            when (operationTextView.text) {
+                "0" -> operationTextView.text = "1"
+                else -> operationTextView.text = operationTextView.text.toString() + "1"
+            }
+        }
+
+        zeroButton.setOnClickListener {
+            when (operationTextView.text) {
+                "0" -> operationTextView.text = "0"
+                else -> operationTextView.text = operationTextView.text.toString() + "0"
             }
         }
     }
