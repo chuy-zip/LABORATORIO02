@@ -186,11 +186,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         openParenthesisButton.setOnClickListener {
-            operationTextView.text = operationTextView.text.toString() + "("
+            when (operationTextView.text) {
+                "0" -> operationTextView.text = "("
+                else -> operationTextView.text = operationTextView.text.toString() + "("
+            }
         }
 
         closeParenthesisButton.setOnClickListener {
-            operationTextView.text = operationTextView.text.toString() + ")"
+            when (operationTextView.text) {
+                "0" -> operationTextView.text = ")"
+                else -> operationTextView.text = operationTextView.text.toString() + ")"
+            }
         }
     }
 }
