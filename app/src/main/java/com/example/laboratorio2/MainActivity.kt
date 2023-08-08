@@ -188,11 +188,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         openParenthesisButton.setOnClickListener {
-            operationTextView.text = operationTextView.text.toString() + "("
+            when (operationTextView.text) {
+                "0" -> operationTextView.text = "("
+                else -> operationTextView.text = operationTextView.text.toString() + "("
+            }
         }
 
         closeParenthesisButton.setOnClickListener {
-            operationTextView.text = operationTextView.text.toString() + ")"
+            when (operationTextView.text) {
+                "0" -> operationTextView.text = ")"
+                else -> operationTextView.text = operationTextView.text.toString() + ")"
+            }
         }
 
         equalsButton.setOnClickListener {
@@ -215,10 +221,8 @@ class MainActivity : AppCompatActivity() {
                 operationTextView.setText(result)
                 preResultTextView.setText(result)
 
-
-            } catch (e: NumberFormatException) {
-                Toast.makeText(this, "Error, look for syntax error", Toast.LENGTH_SHORT).show();
-
+            } catch (e: Exception) {
+                Toast.makeText(this, "Syntax error", Toast.LENGTH_SHORT).show();
             }
 
         }

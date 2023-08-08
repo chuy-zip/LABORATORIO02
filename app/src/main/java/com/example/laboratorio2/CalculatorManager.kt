@@ -5,13 +5,13 @@ import java.util.ArrayDeque
 class CalculatorManager {
     //determines if the cahracter read is an operator, if not then sends false
     fun isOperator(char: Char): Boolean {
-        return char == '+' || char == '-' || char == '*' || char == '/' || char == '^'
+        return char == '+' || char == '-' || char == '*' || char == '/' || char == '^' || char == '%'
     }
     //assigns precedence to the opeerators
     fun precedence(operator: Char): Int {
         return when (operator) {
             '+', '-' -> 1
-            '*', '/' -> 2
+            '*', '/' , '%' -> 2
             '^' -> 3
             else -> 0
         }
@@ -72,20 +72,51 @@ class CalculatorManager {
         val stack = ArrayDeque<String>()
 
         for(element in completeOperation){
-
             if(element.toDoubleOrNull() != null){ //This means that is a number
                 stack.push(element)
             }
-
             else if(element.equals("+")){
                 var secondOperand: Int = stack.pop().toInt()
                 var firstOperand: Int = stack.pop().toInt()
                 var result: Int = firstOperand + secondOperand
                 stack.push(result.toString())
-
             }
-        }
+            else if(element.equals("-")){
+                var secondOperand: Int = stack.pop().toInt()
+                var firstOperand: Int = stack.pop().toInt()
+                var result: Int = firstOperand - secondOperand
+                stack.push(result.toString())
+            }
+            else if(element.equals("/")){
+                var secondOperand: Int = stack.pop().toInt()
+                var firstOperand: Int = stack.pop().toInt()
+                var result: Int = firstOperand / secondOperand
+                stack.push(result.toString())
+            }
+            else if(element.equals("*")){
+                var secondOperand: Int = stack.pop().toInt()
+                var firstOperand: Int = stack.pop().toInt()
+                var result: Int = firstOperand * secondOperand
+                stack.push(result.toString())
+            }
+            else if(element.equals("%")){
+                var secondOperand: Int = stack.pop().toInt()
+                var firstOperand: Int = stack.pop().toInt()
+                var result: Int = firstOperand % secondOperand
+                stack.push(result.toString())
+            }
+            else if(element.equals("^")){
+                var exponent: Int = stack.pop().toInt()
+                var Operand: Int = stack.pop().toInt()
+                var result: Int = 1
 
+                for(i in 0 until exponent){
+                    result *= Operand
+                }
+                stack.push(result.toString())
+            }
+
+        }
         return stack.pop()
     }
 
