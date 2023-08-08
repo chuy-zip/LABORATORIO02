@@ -319,8 +319,6 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
                 }
             }
-
-
     }
 
     private fun reSizeOperation() {
