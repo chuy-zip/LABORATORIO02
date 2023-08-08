@@ -1,15 +1,10 @@
 package com.example.laboratorio2
 
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TableLayout
-import android.widget.TableRow
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.LinearLayoutCompat
 
 class MainActivity : AppCompatActivity() {
 
