@@ -3,6 +3,7 @@ package com.example.laboratorio2
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 class MainActivity : AppCompatActivity() {
 
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var calculator = CalculatorManager()
 
         // TextViews
         preResultTextView = findViewById(R.id.textViewPrevResult)
@@ -192,5 +194,31 @@ class MainActivity : AppCompatActivity() {
         closeParenthesisButton.setOnClickListener {
             operationTextView.text = operationTextView.text.toString() + ")"
         }
+
+        equalsButton.setOnClickListener {
+            try {
+                // We take the content of the TextView and store in a string
+                var infixExpression: String = operationTextView.text.toString()
+
+                //The string is turned into a list
+                var operationExpression: List<String> = infixExpression.split("")
+
+                // The list is tokenized so the list know has the numbers and signs grouped correctly
+                var completeOperation = calculator.tokenizeExpression(operationExpression)
+
+                // The operation is turned into a postfix expression
+                completeOperation = calculator.infixToPostfix(completeOperation)
+
+                var result: Int = calculator.calculate(completeOperation)
+
+                calculator.tokenizeExpression(operationExpression)
+
+            } catch (e: NumberFormatException) {
+                Toast.makeText(this, "Error, look for syntax error", Toast.LENGTH_SHORT).show();
+
+            }
+
+        }
+
     }
 }
