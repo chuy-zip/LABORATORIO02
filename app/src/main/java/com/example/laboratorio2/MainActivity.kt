@@ -40,10 +40,12 @@ class MainActivity : AppCompatActivity() {
     private val minSize = 50
     private val maxCharacters = 26
 
+    private var calculator = CalculatorManager()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var calculator = CalculatorManager()
+
 
         // TextViews
         preResultTextView = findViewById(R.id.textViewPrevResult)
@@ -227,7 +229,29 @@ class MainActivity : AppCompatActivity() {
 
             // Sign Listeners
             equalsButton.setOnClickListener {
+                setOriginalSize()
+                try {
+                    // We take the content of the TextView and store in a string
+                    var infixExpression: String = operationTextView.text.toString()
 
+                    //The string is turned into a list
+                    var operationExpression: List<String> = infixExpression.split("")
+
+                    // The list is tokenized so the list know has the numbers and signs grouped correctly
+                    operationExpression = calculator.tokenizeExpression(operationExpression)
+
+                    // The operation is turned into a postfix expression
+                    operationExpression = calculator.infixToPostfix(operationExpression)
+                    println(operationExpression)
+
+                    var result = calculator.calculate(operationExpression)
+
+                    operationTextView.setText(result)
+                    preResultTextView.setText(result)
+
+                } catch (e: Exception) {
+                    Toast.makeText(this, "Syntax error", Toast.LENGTH_SHORT).show();
+                }
             }
 
             powerButton.setOnClickListener {
@@ -322,33 +346,6 @@ class MainActivity : AppCompatActivity() {
             actualSize -= 5
             operationTextView.textSize = actualSize.toFloat()
         }
-
-        equalsButton.setOnClickListener {
-            try {
-                // We take the content of the TextView and store in a string
-                var infixExpression: String = operationTextView.text.toString()
-
-                //The string is turned into a list
-                var operationExpression: List<String> = infixExpression.split("")
-
-                // The list is tokenized so the list know has the numbers and signs grouped correctly
-                operationExpression = calculator.tokenizeExpression(operationExpression)
-
-                // The operation is turned into a postfix expression
-                operationExpression = calculator.infixToPostfix(operationExpression)
-                println(operationExpression)
-
-                var result = calculator.calculate(operationExpression)
-
-                operationTextView.setText(result)
-                preResultTextView.setText(result)
-
-            } catch (e: Exception) {
-                Toast.makeText(this, "Syntax error", Toast.LENGTH_SHORT).show();
-            }
-
-        }
-
     }
 
     private fun setOriginalSize() {
