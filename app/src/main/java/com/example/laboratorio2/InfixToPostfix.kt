@@ -48,7 +48,7 @@ fun infixToPostfix(infixList: List<String>): List<String> {
 
 //example of function
 fun main() {
-    val infixExpression = listOf("1", "+", "49", "*", "3", "/", "(", "10", "-", "5", ")", "^", "4", "%", "7")
+    val infixExpression = listOf("1", "+", "49", "*", "3", "/", "(","(", "10", "-", "5", ")", "^", "4", ")", "%", "7")
     val postfixExpression = infixToPostfix(infixExpression)
 
     println("Infix: $infixExpression")
