@@ -28,7 +28,8 @@
         android:text="C"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:cornerRadius="2dp" />
+        app:cornerRadius="2dp"
+        android:background="@color/yellow"/>
 
     <TextView
         android:id="@+id/textViewOpearation"
@@ -328,7 +329,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="30dp"
                 android:text="("
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 app:cornerRadius="2dp" />
 
@@ -358,7 +359,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="30dp"
                 android:text=")"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 app:cornerRadius="2dp" />
 
@@ -375,7 +376,8 @@
                 android:text="="
                 android:textColor="#000000"
                 android:textSize="24sp"
-                app:cornerRadius="2dp" />
+                app:cornerRadius="2dp"
+                android:background="#FFEB3B" />
         </TableRow>
 
     </TableLayout>
