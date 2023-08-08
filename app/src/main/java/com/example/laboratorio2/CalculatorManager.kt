@@ -52,7 +52,7 @@ class CalculatorManager {
         var tokenizedList: ArrayList<String> = ArrayList()
 
         for (letter in operationExpression){
-            if(letter.toDoubleOrNull() == null){
+            if(letter.toDoubleOrNull() == null){ // if the letter is not a number
                 // If the the variable number has something stored in it, the number will be
                 // added to the list first
                 if(!number.equals("")){
@@ -65,12 +65,28 @@ class CalculatorManager {
                 number += letter
             }
         }
-
         return tokenizedList.toList()
     }
 
-    fun calculate(completeOperation: List<String>): Int {
-        return 5
+    fun calculate(completeOperation: List<String>): String {
+        val stack = ArrayDeque<String>()
+
+        for(element in completeOperation){
+
+            if(element.toDoubleOrNull() != null){ //This means that is a number
+                stack.push(element)
+            }
+
+            else if(element.equals("+")){
+                var secondOperand: Int = stack.pop().toInt()
+                var firstOperand: Int = stack.pop().toInt()
+                var result: Int = firstOperand + secondOperand
+                stack.push(result.toString())
+
+            }
+        }
+
+        return stack.pop()
     }
 
 

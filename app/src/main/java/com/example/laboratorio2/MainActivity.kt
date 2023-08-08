@@ -204,14 +204,17 @@ class MainActivity : AppCompatActivity() {
                 var operationExpression: List<String> = infixExpression.split("")
 
                 // The list is tokenized so the list know has the numbers and signs grouped correctly
-                var completeOperation = calculator.tokenizeExpression(operationExpression)
+                operationExpression = calculator.tokenizeExpression(operationExpression)
 
                 // The operation is turned into a postfix expression
-                completeOperation = calculator.infixToPostfix(completeOperation)
+                operationExpression = calculator.infixToPostfix(operationExpression)
+                println(operationExpression)
 
-                var result: Int = calculator.calculate(completeOperation)
+                var result = calculator.calculate(operationExpression)
 
-                calculator.tokenizeExpression(operationExpression)
+                operationTextView.setText(result)
+                preResultTextView.setText(result)
+
 
             } catch (e: NumberFormatException) {
                 Toast.makeText(this, "Error, look for syntax error", Toast.LENGTH_SHORT).show();
