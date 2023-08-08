@@ -1,9 +1,16 @@
 package com.example.laboratorio2
 
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.TableLayout
+import android.widget.TableRow
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.LinearLayoutCompat
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var preResultTextView: TextView
@@ -32,6 +39,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var twoButton: Button
     private lateinit var oneButton: Button
     private lateinit var zeroButton: Button
+
+    private val originalSize = 70
+    private var actualSize = originalSize
+    private val minSize = 50
+    private val maxCharacters = 26
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,135 +80,258 @@ class MainActivity : AppCompatActivity() {
         oneButton = findViewById(R.id.buttonOne)
         zeroButton = findViewById(R.id.buttonZero)
 
-        clearButton.setOnClickListener {
-            operationTextView.text = "0"
-        }
-
-        deleteButton.setOnClickListener {
-            var inputString: String = operationTextView.text.toString()
-
-            if (inputString != "0" && inputString.isNotEmpty()) {
-                inputString = inputString.substring(0, inputString.length - 1)
-                operationTextView.text = inputString
-            }
-
-            if (inputString.isEmpty()) {
+            clearButton.setOnClickListener {
                 operationTextView.text = "0"
+                setOriginalSize()
             }
-        }
 
-        // Numbers Listeners
-        nineButton.setOnClickListener {
-            when (operationTextView.text) {
-                "0" -> operationTextView.text = "9"
-                else -> operationTextView.text = operationTextView.text.toString() + "9"
+            deleteButton.setOnClickListener {
+                var inputString: String = operationTextView.text.toString()
+
+                if (inputString != "0" && inputString.isNotEmpty()) {
+                    inputString = inputString.substring(0, inputString.length - 1)
+                    operationTextView.text = inputString
+                }
+
+                if (inputString.isEmpty()) {
+                    operationTextView.text = "0"
+                }
             }
-        }
 
-        eightButton.setOnClickListener {
-            when (operationTextView.text) {
-                "0" -> operationTextView.text = "8"
-                else -> operationTextView.text = operationTextView.text.toString() + "8"
+            // Numbers Listeners
+            nineButton.setOnClickListener {
+                if (operationTextView.text.length < maxCharacters) {
+                reSizeOperation()
+                when (operationTextView.text) {
+                    "0" -> operationTextView.text = "9"
+                    else -> operationTextView.text = operationTextView.text.toString() + "9"
+                }
+
+                } else {
+                    Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
+                }
             }
-        }
 
-        sevenButton.setOnClickListener {
-            when (operationTextView.text) {
-                "0" -> operationTextView.text = "7"
-                else -> operationTextView.text = operationTextView.text.toString() + "7"
+            eightButton.setOnClickListener {
+                if (operationTextView.text.length < maxCharacters) {
+                reSizeOperation()
+                when (operationTextView.text) {
+                    "0" -> operationTextView.text = "8"
+                    else -> operationTextView.text = operationTextView.text.toString() + "8"
+                }
+
+                } else {
+                    Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
+                }
             }
-        }
 
-        sixButton.setOnClickListener {
-            when (operationTextView.text) {
-                "0" -> operationTextView.text = "6"
-                else -> operationTextView.text = operationTextView.text.toString() + "6"
+            sevenButton.setOnClickListener {
+                if (operationTextView.text.length < maxCharacters) {
+                reSizeOperation()
+                when (operationTextView.text) {
+                    "0" -> operationTextView.text = "7"
+                    else -> operationTextView.text = operationTextView.text.toString() + "7"
+                }
+
+                } else {
+                    Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
+                }
             }
-        }
 
-        fiveButton.setOnClickListener {
-            when (operationTextView.text) {
-                "0" -> operationTextView.text = "5"
-                else -> operationTextView.text = operationTextView.text.toString() + "5"
+            sixButton.setOnClickListener {
+                if (operationTextView.text.length < maxCharacters) {
+                reSizeOperation()
+                when (operationTextView.text) {
+                    "0" -> operationTextView.text = "6"
+                    else -> operationTextView.text = operationTextView.text.toString() + "6"
+                }
+
+                } else {
+                    Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
+                }
             }
-        }
 
-        fourButton.setOnClickListener {
-            when (operationTextView.text) {
-                "0" -> operationTextView.text = "4"
-                else -> operationTextView.text = operationTextView.text.toString() + "4"
+            fiveButton.setOnClickListener {
+                if (operationTextView.text.length < maxCharacters) {
+                reSizeOperation()
+                when (operationTextView.text) {
+                    "0" -> operationTextView.text = "5"
+                    else -> operationTextView.text = operationTextView.text.toString() + "5"
+                }
+
+                } else {
+                    Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
+                }
             }
-        }
 
-        threeButton.setOnClickListener {
-            when (operationTextView.text) {
-                "0" -> operationTextView.text = "3"
-                else -> operationTextView.text = operationTextView.text.toString() + "3"
+            fourButton.setOnClickListener {
+                if (operationTextView.text.length < maxCharacters) {
+                reSizeOperation()
+                when (operationTextView.text) {
+                    "0" -> operationTextView.text = "4"
+                    else -> operationTextView.text = operationTextView.text.toString() + "4"
+                }
+
+                } else {
+                    Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
+                }
             }
-        }
 
-        twoButton.setOnClickListener {
-            when (operationTextView.text) {
-                "0" -> operationTextView.text = "2"
-                else -> operationTextView.text = operationTextView.text.toString() + "2"
+            threeButton.setOnClickListener {
+                if (operationTextView.text.length < maxCharacters) {
+                reSizeOperation()
+                when (operationTextView.text) {
+                    "0" -> operationTextView.text = "3"
+                    else -> operationTextView.text = operationTextView.text.toString() + "3"
+                }
+
+                } else {
+                    Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
+                }
             }
-        }
 
-        oneButton.setOnClickListener {
-            when (operationTextView.text) {
-                "0" -> operationTextView.text = "1"
-                else -> operationTextView.text = operationTextView.text.toString() + "1"
+            twoButton.setOnClickListener {
+                if (operationTextView.text.length < maxCharacters) {
+                reSizeOperation()
+                when (operationTextView.text) {
+                    "0" -> operationTextView.text = "2"
+                    else -> operationTextView.text = operationTextView.text.toString() + "2"
+                }
+
+                } else {
+                    Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
+                }
             }
-        }
 
-        zeroButton.setOnClickListener {
-            when (operationTextView.text) {
-                "0" -> operationTextView.text = "0"
-                else -> operationTextView.text = operationTextView.text.toString() + "0"
+            oneButton.setOnClickListener {
+                if (operationTextView.text.length < maxCharacters) {
+                reSizeOperation()
+                when (operationTextView.text) {
+                    "0" -> operationTextView.text = "1"
+                    else -> operationTextView.text = operationTextView.text.toString() + "1"
+                }
+
+                } else {
+                    Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
+                }
             }
-        }
 
-        // Sign Listeners
-        equalsButton.setOnClickListener {
+            zeroButton.setOnClickListener {
+                if (operationTextView.text.length < maxCharacters) {
+                reSizeOperation()
+                when (operationTextView.text) {
+                    "0" -> operationTextView.text = "0"
+                    else -> operationTextView.text = operationTextView.text.toString() + "0"
+                }
 
-        }
-
-        powerButton.setOnClickListener {
-            operationTextView.text = operationTextView.text.toString() + "^"
-        }
-
-        moduleButton.setOnClickListener {
-            operationTextView.text = operationTextView.text.toString() + "%"
-        }
-
-        divisionButton.setOnClickListener {
-            operationTextView.text = operationTextView.text.toString() + "/"
-        }
-
-        multiplyButton.setOnClickListener {
-            operationTextView.text = operationTextView.text.toString() + "*"
-        }
-
-        minusButton.setOnClickListener {
-            operationTextView.text = operationTextView.text.toString() + "-"
-        }
-
-        plusButton.setOnClickListener {
-            operationTextView.text = operationTextView.text.toString() + "+"
-        }
-
-        openParenthesisButton.setOnClickListener {
-            when (operationTextView.text) {
-                "0" -> operationTextView.text = "("
-                else -> operationTextView.text = operationTextView.text.toString() + "("
+                } else {
+                    Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
+                }
             }
-        }
 
-        closeParenthesisButton.setOnClickListener {
-            when (operationTextView.text) {
-                "0" -> operationTextView.text = ")"
-                else -> operationTextView.text = operationTextView.text.toString() + ")"
+            // Sign Listeners
+            equalsButton.setOnClickListener {
+
             }
+
+            powerButton.setOnClickListener {
+                if (operationTextView.text.length < maxCharacters) {
+                reSizeOperation()
+                operationTextView.text = operationTextView.text.toString() + "^"
+
+                } else {
+                    Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            moduleButton.setOnClickListener {
+                if (operationTextView.text.length < maxCharacters) {
+                reSizeOperation()
+                operationTextView.text = operationTextView.text.toString() + "%"
+
+                } else {
+                    Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            divisionButton.setOnClickListener {
+                if (operationTextView.text.length < maxCharacters) {
+                reSizeOperation()
+                operationTextView.text = operationTextView.text.toString() + "/"
+
+                } else {
+                    Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            multiplyButton.setOnClickListener {
+                if (operationTextView.text.length < maxCharacters) {
+                reSizeOperation()
+                operationTextView.text = operationTextView.text.toString() + "*"
+
+                } else {
+                    Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            minusButton.setOnClickListener {
+                if (operationTextView.text.length < maxCharacters) {
+                reSizeOperation()
+                operationTextView.text = operationTextView.text.toString() + "-"
+
+                } else {
+                    Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            plusButton.setOnClickListener {
+                if (operationTextView.text.length < maxCharacters) {
+                reSizeOperation()
+                operationTextView.text = operationTextView.text.toString() + "+"
+
+                } else {
+                    Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            openParenthesisButton.setOnClickListener {
+                if (operationTextView.text.length < maxCharacters) {
+                reSizeOperation()
+                when (operationTextView.text) {
+                    "0" -> operationTextView.text = "("
+                    else -> operationTextView.text = operationTextView.text.toString() + "("
+                }
+
+                } else {
+                    Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            closeParenthesisButton.setOnClickListener {
+                if (operationTextView.text.length < maxCharacters) {
+                reSizeOperation()
+                when (operationTextView.text) {
+                    "0" -> operationTextView.text = ")"
+                    else -> operationTextView.text = operationTextView.text.toString() + ")"
+                }
+
+                } else {
+                    Toast.makeText(this, "Número máximo de caracteres alcanzado.", Toast.LENGTH_LONG).show()
+                }
+            }
+
+
+    }
+
+    private fun reSizeOperation() {
+        if (operationTextView.text.length >= 9 && operationTextView.textSize > minSize) {
+            actualSize -= 5
+            operationTextView.textSize = actualSize.toFloat()
         }
+    }
+
+    private fun setOriginalSize() {
+        operationTextView.textSize = originalSize.toFloat()
+        actualSize = originalSize
     }
 }
